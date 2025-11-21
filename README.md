@@ -2,6 +2,30 @@
 
 **Algorithmic Sports Betting Platform**
 
+## Purpose
+This is the main entry point and overview document for the Alpha-Bet project. It provides a quick reference to project status, goals, structure, and links to detailed documentation.
+
+## When to Use
+- **First time exploring the project** - Start here for overview
+- **Checking project status** - See current phase and implementation progress
+- **Finding specific documentation** - Use links to navigate to detailed docs
+- **Onboarding new team members** - Share this as starting point
+- **Quick reference** - Check tech stack, metrics, or philosophy
+
+## Called By
+- External developers/stakeholders exploring the repository
+- AI agents needing project context
+- Team members looking for quick status updates
+- Documentation index/search tools
+
+## Calls
+- [docs/ROADMAP.md](docs/ROADMAP.md) - Development phases and priorities
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Technical design principles
+- [docs/DECISIONS.md](docs/DECISIONS.md) - Decision log and open questions
+- [docs/API_STRATEGY.md](docs/API_STRATEGY.md) - Sportsbook integration strategy
+
+---
+
 Build systematic edge discovery and automated execution for sports betting markets.
 
 ---

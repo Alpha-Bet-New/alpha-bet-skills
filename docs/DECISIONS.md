@@ -1,5 +1,29 @@
 # Alpha-Bet Decisions
 
+## Purpose
+Tracks all significant technical and strategic decisions, their rationale, and open questions requiring resolution. Serves as the single source of truth for "why did we decide that?"
+
+## When to Use
+- **Making a new decision** - Log it here with context and rationale
+- **Questioning a past decision** - Look up why it was made
+- **Finding open questions** - See what needs to be decided (organized by priority)
+- **Onboarding** - Understand decision history and context
+- **Planning** - Check blockers and pending decisions
+
+## Called By
+- Team members making technical/strategic choices
+- [README.md](../README.md) - Links for decision transparency
+- [docs/ROADMAP.md](ROADMAP.md) - References blocking questions
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - Documents tech stack decisions
+- Sprint planning meetings
+
+## Calls
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - Links to technical implications
+- [docs/API_STRATEGY.md](API_STRATEGY.md) - Provider selection decisions
+- [docs/ROADMAP.md](ROADMAP.md) - Feature priority decisions
+
+---
+
 Decision log and open questions for the Alpha-Bet project.
 
 ---

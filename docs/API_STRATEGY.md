@@ -1,5 +1,29 @@
 # Alpha-Bet API Strategy
 
+## Purpose
+Defines the strategy for integrating with sportsbook APIs and data providers, including provider priorities, integration patterns, error handling, and testing approaches.
+
+## When to Use
+- **Selecting providers to integrate** - Check priority rankings and pros/cons
+- **Implementing provider adapters** - Reference design patterns and code examples
+- **Handling API errors** - Consult error handling strategies
+- **Rate limit issues** - See optimization and caching approaches
+- **Testing integrations** - Use testing patterns and mock implementations
+
+## Called By
+- Developers implementing sportsbook integrations
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - References adapter patterns from here
+- [docs/DECISIONS.md](DECISIONS.md) - Links to provider selection rationale
+- [docs/ROADMAP.md](ROADMAP.md) - References provider integration timeline
+- AI coding assistants implementing APIs
+
+## Calls
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - Implements architectural patterns
+- [docs/DECISIONS.md](DECISIONS.md) - Documents provider choices
+- External sportsbook API documentation
+
+---
+
 Sportsbook and data provider integration strategy.
 
 ---

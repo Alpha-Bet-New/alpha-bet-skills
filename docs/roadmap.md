@@ -1,5 +1,29 @@
 # Alpha-Bet Roadmap
 
+## Purpose
+Outlines the development timeline, feature priorities, and milestones for the Alpha-Bet platform across MVP, automation, and scale phases.
+
+## When to Use
+- **Planning sprints** - Determine what to build next
+- **Checking priorities** - See Must-Have vs Should-Have vs Nice-to-Have features
+- **Understanding timeline** - Know which phase introduces which capabilities
+- **Setting expectations** - Communicate what's coming and when
+- **Reviewing progress** - Track actual vs planned milestones
+
+## Called By
+- Product/project managers planning work
+- [README.md](../README.md) - Links to current phase
+- Developers checking feature priorities
+- Stakeholders reviewing timeline
+- AI agents determining implementation scope
+
+## Calls
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - References technical constraints
+- [docs/DECISIONS.md](DECISIONS.md) - Links to open questions blocking features
+- [docs/API_STRATEGY.md](API_STRATEGY.md) - Provider integration timeline
+
+---
+
 Development phases, timeline, and priorities.
 
 ---

@@ -1,5 +1,28 @@
 # Alpha-Bet Architecture
 
+## Purpose
+Defines the technical design principles, system architecture, data models, and implementation patterns for the Alpha-Bet platform. This is the authoritative guide for all architectural decisions.
+
+## When to Use
+- **Before implementing new features** - Check architectural patterns to follow
+- **Making technical decisions** - Consult principles and anti-patterns
+- **Designing system components** - Reference architecture diagrams and data models
+- **Code reviews** - Validate implementations follow architectural guidelines
+- **Onboarding engineers** - Understand system design philosophy
+
+## Called By
+- Developers implementing features
+- [README.md](../README.md) - Links to this for technical details
+- [docs/ROADMAP.md](ROADMAP.md) - References architectural constraints
+- [docs/API_STRATEGY.md](API_STRATEGY.md) - Implements patterns defined here
+- AI coding assistants - Before generating code
+
+## Calls
+- [docs/API_STRATEGY.md](API_STRATEGY.md) - Provider integration patterns
+- [docs/DECISIONS.md](DECISIONS.md) - Technology choice rationale
+
+---
+
 Technical design principles, patterns, and implementation guidelines.
 
 ---
