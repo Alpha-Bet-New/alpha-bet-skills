@@ -1,3 +1,4 @@
+
 # Document Creation Rules
 
 ## Purpose
@@ -23,25 +24,87 @@ Defines the standard process, structure, and quality requirements for creating n
 
 ---
 
+## Core Principles
+
+### 🚨 CRITICAL: Read Everything, Assume Nothing
+
+**Two Non-Negotiable Rules:**
+
+1. **READ ALL MATERIALS IN FULL**
+   - No skimming, no summarizing, no "getting the gist"
+   - Read every word of every document
+   - Understand context, relationships, and dependencies
+   - Take comprehensive notes
+
+2. **MAKE NO ASSUMPTIONS**
+   - When in doubt → **ASK**
+   - When unclear → **ASK**
+   - When choosing between options → **ASK**
+   - When you think you know → **ASK ANYWAY**
+
+**Why These Rules Exist:**
+- Prevents conflicts and redundancy
+- Ensures alignment with strategy and roadmap
+- Maintains consistency across all documentation
+- Respects existing decisions and architecture
+- Saves time by avoiding rework
+
+**Failure to Follow These Rules Will Result In:**
+- ❌ Duplicate or conflicting content
+- ❌ Misalignment with project strategy
+- ❌ Wasted effort and rework
+- ❌ Confusion for readers
+- ❌ Damage to documentation credibility
+
+---
+
 ## Document Creation Process
 
 ### Phase 1: Pre-Creation (Research & Planning)
 
-#### Step 1: Read All Existing Documentation
-**Before writing anything**, thoroughly review:
+#### Step 1: Read All Existing Documentation IN FULL
+
+**CRITICAL: Before writing anything**, you MUST thoroughly read ALL existing documentation **in its entirety**:
 
 1. **[README.md](../README.md)** - Project overview and current status
 2. **[docs/ROADMAP.md](ROADMAP.md)** - Development phases and priorities
 3. **[docs/ARCHITECTURE.md](ARCHITECTURE.md)** - Technical design principles
 4. **[docs/DECISIONS.md](DECISIONS.md)** - Decision log and open questions
 5. **[docs/API_STRATEGY.md](API_STRATEGY.md)** - Provider integration strategy
-6. **All other docs** - Check `/docs` directory for related content
+6. **[docs/0_rules_docCreator.md](0_rules_docCreator.md)** - This document (document creation rules)
+7. **All other docs** - Check `/docs` directory and read ALL related content
 
-**Why?**
+**Reading Requirements:**
+- ⚠️ **Read documents IN FULL** - No skimming, no summaries, no assumptions
+- ⚠️ **Read EVERY section** - Don't skip Table of Contents, examples, or appendices
+- ⚠️ **Take notes** - Document key points, dependencies, and potential conflicts
+- ⚠️ **Understand relationships** - How docs reference and depend on each other
+
+**Why This Matters:**
 - Avoid duplicating existing content
-- Understand context and relationships
-- Identify gaps you're filling
+- Understand full context and relationships
+- Identify genuine gaps vs perceived gaps
 - Ensure consistency with existing docs
+- Prevent conflicts with established patterns
+- Respect decisions already made
+
+**⚠️ MAKE NO ASSUMPTIONS**
+- If you're unsure about something → **Ask clarifying questions**
+- If terminology is unclear → **Ask for definitions**
+- If scope overlaps with existing docs → **Ask which doc should contain what**
+- If alignment is questionable → **Ask for validation**
+- If requirements are ambiguous → **Ask for specifics**
+
+**When to Ask Questions:**
+- ❓ Unclear requirements or scope
+- ❓ Potential conflicts with existing docs
+- ❓ Ambiguous terminology
+- ❓ Uncertain about alignment with strategy/roadmap
+- ❓ Multiple valid approaches exist
+- ❓ Trade-offs need stakeholder input
+- ❓ Any doubt about the right approach
+
+**Better to ask than to assume wrong!**
 
 ---
 
@@ -525,4 +588,5 @@ If you're unsure about documentation:
 
 ## Version History
 
+- **v1.1 (2024-11-20):** Added explicit "Read Everything, Assume Nothing" core principles section with emphasis on full document reading and asking clarifying questions
 - **v1.0 (2024-11-20):** Initial document creation rules established
