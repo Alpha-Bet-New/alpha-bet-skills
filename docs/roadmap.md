@@ -1,25 +1,16 @@
-# Alpha-Bet Development Roadmap
+# Alpha-Bet Roadmap
 
-**Company:** Alpha-Bet  
-**Mission:** Build algorithmic sports betting platform with systematic edge discovery and automated execution  
-**Last Updated:** 2024-11-20
+Development phases, timeline, and priorities.
 
 ---
 
-## Strategic Direction
+## Timeline Overview
 
-### Core Philosophy
-- **Data-Driven:** Every betting decision backed by quantitative analysis
-- **Systematic:** Repeatable processes, not gut feelings
-- **Scalable:** Build for multiple sports, markets, and strategies
-- **Flexible:** Architecture supports rapid strategy iteration
-
-### What We're Building
-Algorithmic trading platform for sports betting that:
-1. Ingests real-time odds from multiple providers
-2. Applies quantitative models to identify edge
-3. Executes trades automatically when criteria met
-4. Tracks performance and continuously improves models
+```
+Month 1-3:  MVP           ████████░░░░░░░░░░░░ (Data pipeline, arbitrage, alerts)
+Month 4-6:  Automation    ░░░░░░░░████████░░░░ (Auto-execution, multi-sport)
+Month 7-12: Scale         ░░░░░░░░░░░░████████ (ML models, optimization)
+```
 
 ---
 
@@ -122,243 +113,6 @@ Algorithmic trading platform for sports betting that:
 
 ---
 
-## Architectural Principles
-
-### ✅ DO: Build for Flexibility
-
-**Multi-Strategy Architecture:**
-```python
-# GOOD: Strategy interface allows easy addition
-class Strategy(ABC):
-    @abstractmethod
-    def evaluate(self, odds_data: OddsSnapshot) -> Optional[BettingOpportunity]:
-        pass
-
-# Add new strategies without changing core system
-class ArbitrageStrategy(Strategy): ...
-class ValueBettingStrategy(Strategy): ...
-class SteamChaseStrategy(Strategy): ...
-```
-
-**Multi-Sport Data Model:**
-```python
-# GOOD: Generic event structure
-class SportEvent:
-    event_id: str
-    sport: SportType  # Enum: NBA, NFL, MLB, etc.
-    participants: List[Participant]
-    markets: List[Market]  # Moneyline, spread, totals, props
-    start_time: datetime
-
-# NOT sport-specific tables like "nba_games", "nfl_games"
-```
-
-**Multi-Provider Odds:**
-```python
-# GOOD: Provider-agnostic odds format
-class OddsQuote:
-    provider: str  # "draftkings", "fanduel", etc.
-    market_type: MarketType
-    selection: str
-    odds: Decimal
-    timestamp: datetime
-
-# Normalize all provider formats to this structure
-```
-
-### ❌ DON'T: Hardcode Assumptions
-
-**Avoid Single-Provider Lock-In:**
-```python
-# BAD: Hardcoded to one provider
-def get_odds():
-    return draftkings_api.fetch_odds()
-
-# GOOD: Provider abstraction
-def get_odds(provider: OddsProvider):
-    return provider.fetch_odds()
-```
-
-**Avoid Single-Sport Assumptions:**
-```python
-# BAD: NBA-specific field names
-class Game:
-    home_team_score: int
-    away_team_score: int
-
-# GOOD: Generic structure
-class Event:
-    participants: List[Participant]
-    results: Dict[str, Any]  # Flexible for different sports
-```
-
-**Avoid Single-Strategy Logic:**
-```python
-# BAD: Arbitrage logic in main loop
-if odds_diff > threshold:
-    place_bets()
-
-# GOOD: Strategy pattern
-opportunities = [s.evaluate(odds) for s in active_strategies]
-for opp in opportunities:
-    if opp.meets_criteria():
-        execute(opp)
-```
-
-### Configuration Over Code
-
-**Strategy Parameters:**
-```yaml
-# config/strategies.yaml
-arbitrage:
-  enabled: true
-  min_profit_pct: 2.0
-  max_stake: 500
-  providers: ["draftkings", "fanduel", "betmgm"]
-
-value_betting:
-  enabled: false  # Not ready yet
-  edge_threshold: 5.0
-  model_path: "models/nba_v1.pkl"
-```
-
-**Sport-Specific Rules:**
-```yaml
-# config/sports.yaml
-nba:
-  enabled: true
-  markets: ["moneyline", "spread", "total"]
-  min_odds: 1.5
-  max_odds: 5.0
-
-nfl:
-  enabled: false  # Coming in Phase 2
-```
-
----
-
-## Data Architecture
-
-### Core Entities
-
-**Events** (Games/Matches)
-- Sport-agnostic structure
-- Participant info (teams/players)
-- Start time, status
-- Results after completion
-
-**Odds Quotes**
-- Provider, market, selection, odds
-- Timestamp (critical for latency)
-- Historical storage for analysis
-
-**Bets Placed**
-- Strategy used
-- Event, market, selection
-- Stake, odds, expected value
-- Result, profit/loss
-
-**Strategies**
-- Name, type, parameters
-- Enabled/disabled status
-- Performance metrics
-
-### Database Design Principles
-
-1. **Time-Series Optimized**
-   - Odds data is time-series (millions of records)
-   - Consider TimescaleDB extension for PostgreSQL
-   - Partition by date for performance
-
-2. **Denormalization for Speed**
-   - Cache current odds in Redis
-   - Materialize views for common queries
-   - Trade storage for query speed
-
-3. **Audit Trail**
-   - Never delete data (soft deletes only)
-   - Track all bet decisions (placed AND skipped)
-   - Store model predictions for backtesting
-
----
-
-## API Integration Strategy
-
-### Sportsbook APIs (Critical Path)
-
-**Priority Order:**
-1. **DraftKings** - Good API, high liquidity
-2. **FanDuel** - Large market share
-3. **BetMGM** - Good for arbitrage
-4. **Caesars** - Additional coverage
-
-**Integration Approach:**
-- Start with odds ingestion (read-only)
-- Add execution (write) in Phase 2
-- Build adapter pattern for each provider
-- Mock APIs for development/testing
-
-### Data Provider APIs (Nice-to-Have)
-
-**For Model Building:**
-- Historical game data (scores, stats)
-- Player injury reports
-- Weather data (for outdoor sports)
-- Line movement history
-
-**Start Simple:**
-- Free/cheap data sources first
-- Avoid expensive data subscriptions early
-- Focus on betting edge, not data hoarding
-
----
-
-## Technology Decisions
-
-### Why Python?
-- Fast development for strategy iteration
-- Rich ML/data science ecosystem
-- Good enough performance for MVP
-- Consider Rust/Go for hot paths later
-
-### Why PostgreSQL?
-- Reliable, battle-tested
-- Good time-series support with extensions
-- ACID guarantees for financial data
-- Easy to query for analysis
-
-### Why FastAPI?
-- Modern, fast Python web framework
-- Auto-generated API docs
-- Async support for WebSockets
-- Type hints = better code quality
-
-### Why Docker?
-- Consistent dev/prod environments
-- Easy deployment
-- Portable across cloud providers
-
----
-
-## Risk Management Principles
-
-### Bankroll Management
-- Never risk more than 2% on single bet
-- Per-strategy allocation limits
-- Daily loss limits (circuit breakers)
-
-### Position Limits
-- Max exposure per event
-- Max exposure per sport
-- Correlation tracking (avoid related bets)
-
-### Strategy Validation
-- Extensive backtesting required
-- Paper trading before live
-- Gradual rollout with small stakes
-
----
-
 ## MVP Development Priorities
 
 ### Must-Have (Blocking Launch)
@@ -398,25 +152,11 @@ nfl:
 
 ---
 
-## Open Questions
+## Related Documents
 
-### Technical Decisions Needed
-- [ ] Which sportsbook APIs to prioritize?
-- [ ] WebSocket vs. polling for odds updates?
-- [ ] TimescaleDB vs. standard PostgreSQL?
-- [ ] Self-host vs. managed database?
-
-### Strategy Decisions Needed
-- [ ] Starting sport (NBA, NFL, MLB)?
-- [ ] Arbitrage vs. value betting first?
-- [ ] What's our minimum acceptable edge?
-- [ ] How much capital to start with?
-
-### Infrastructure Decisions Needed
-- [ ] AWS vs. GCP vs. Azure?
-- [ ] Monitoring/alerting stack?
-- [ ] CI/CD pipeline tools?
-- [ ] Cost budget for MVP?
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical design principles and patterns
+- **[DECISIONS.md](DECISIONS.md)** - Decision log and open questions
+- **[API_STRATEGY.md](API_STRATEGY.md)** - Sportsbook integration strategy
 
 ---
 
@@ -456,4 +196,5 @@ nfl:
 
 ## Version History
 
+- **v2.0 (2024-11-20):** Restructured into focused phases document
 - **v1.0 (2024-11-20):** Initial roadmap created
